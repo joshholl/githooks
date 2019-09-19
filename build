@@ -1,0 +1,19 @@
+# vim: filetype=sh
+#!/usr/bin/env bash
+
+hooks=("pre-commit" "prepare-commit-msg" "commit-msg" "post-commit" "pre-rebase" "post-checkout" "post-merge" "pre-push")
+
+for hook in "${hooks[@]}"; do
+	if ! [ -f $hook ]; then 
+		cp template $hook
+	else 
+		echo "Not creating $hook because it already exists"
+	fi
+
+	if ! [ -d "./$hook.d" ]; then
+		mkdir "./$hook.d"
+		touch "./$hook.d/.gitkeep"
+	else 
+		echo "Not creating $hook.d because it already exists"
+	fi
+done

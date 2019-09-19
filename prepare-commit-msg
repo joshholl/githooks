@@ -1,0 +1,12 @@
+# vim: filetype=sh
+#!/usr/bin/env bash
+
+echo "$@"
+hook_name=`basename "$0"`
+hook_dir="./$hook_name.d"
+
+if [ -d $hook_dir ]; then 
+	find $hook_dir -type f -exec {} "$@" ';'
+else
+	echo "$hook_dir does not exist"
+fi

@@ -1,0 +1,6 @@
+# vim: filetype=sh
+
+#!/usr/bin/env bash
+
+echo "Running blah with the args $@"
+
